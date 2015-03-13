@@ -143,11 +143,11 @@ int main(int argc, char* argv [])
 	int i,b,n,m;
 
 	// ( chars[0][0], chars[1][0] ) = ( number of appearance of ASCII 0, ASCII 0 )
-    // ( chars[0][1], chars[1][1] ) = ( number of appearance of ASCII 1, ASCII 1 )
-    // ...
+        // ( chars[0][1], chars[1][1] ) = ( number of appearance of ASCII 1, ASCII 1 )
+        // ...
 	int chars [2][ASCII_COUNT] = {0};
 	myType *input;
-    input = &chars;
+        input = &chars;
 
 	Node *curr;
 	Tree *tree;
@@ -230,27 +230,27 @@ int main(int argc, char* argv [])
 
 	int currSz = 0;
 	while ((currSz = fread(buff, sizeof(char), BUFF_SIZE, in)) > 0) 
-    {
-        int j;
-        for (i = 0; i < currSz; ++i)  
         {
-            int c = buff[i];
-            for (j = 0; table[c][j]!= -1; ++j)
-            {
+             int j;
+             for (i = 0; i < currSz; ++i)  
+             {
+                 int c = buff[i];
+                 for (j = 0; table[c][j]!= -1; ++j)
+                 {
 	            if (table[c][j] == 0)
 	               state &= ~(1<<outBit);
 	            else
 	               state |= 1<<outBit;
 	            ++outBit;
 	            if (outBit == 8) 
-                {
+                    {
 	               outBit = 0;
 	               fwrite(&state, sizeof(char), 1, out);
 	               state = 0;
 	            }
-            }
+                 }
+             }
         }
-    }
 
     fwrite(&state, sizeof(char), 1, out);
 
